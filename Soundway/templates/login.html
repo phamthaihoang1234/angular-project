@@ -1,0 +1,33 @@
+  <ion-content class="login_page">
+    <form class="app_form">
+      <div class="logo">
+        <img  src="img/logo.png"/>
+      </div>
+        <div class="list list-inset">
+            <label class="item item-input">
+                <i class="icon ion-android-person placeholder-icon"></i>
+                <input type="text" placeholder="Username">
+            </label>
+            <label class="item item-input">
+                <i class="icon ion-ios-locked placeholder-icon"></i>
+                <input type="password" placeholder="Password">
+            </label>
+            <div class="row two_btn">
+              <div class="col">
+                <a  href="#/app/home"  class="button button-block main_btn">
+                  Login
+                </a>
+              </div>
+              <div class="col">
+                <a href="#/register" class="button button-block">
+                  Sign up
+                </a>
+              </div>
+            </div>
+       
+            <a href="#" class="button button-clear button-block" ng-click="forget_password()">Forget password ?</a>
+            <a href="#/app/home" class="button button-clear skip_btn"><i class="ion-arrow-right-c"></i>Skip</a>
+     
+        </div>
+    </form>
+  </ion-content>

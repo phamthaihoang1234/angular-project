@@ -1,0 +1,27 @@
+<h3>List User</h3>
+<a [routerLink]="['/createUser']">Create User</a>
+<form #searchForm="ngForm" (ngSubmit)="search()">
+  <input type="search" class="form-control rounded" placeholder="Search" name="searchValue" [(ngModel)]="searchValue"/>
+  <button type="submit">Search</button>
+</form>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <tr *ngFor="let user of listUsers">
+    <td>{{user.id}}</td>
+    <td>{{user.username}}</td>
+    <td>{{user.email}}</td>
+    <td><button [routerLink]="['/updateUser', user.id]">Update</button></td>
+    <td><button (click)="deleteUser(user.id)">Delete</button></td>
+  </tr>
+</table>
+
+<button *ngIf="page!=0" (click)="back()">Back</button>
+Page {{page+1}}
+<button *ngIf="(listUsers.length!==0)&&(page+1<(allsize))" (click)="next()">Next</button>

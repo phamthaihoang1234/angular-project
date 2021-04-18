@@ -1,0 +1,6 @@
+1. mo file export.sql sau do copy tat ca, paste vao mySQL de tao database
+2. Cau hinh project:
+	- Sau khi download ve, tro den thu muc share code
+	- Cau hinh lai backend bang cach tro den thu muc chua file Main
+	- Cau hinh lai frontend bang cach tro den thu muc chua file angular.json va import thu vien
+bang cach chay lenh: npm install tren man hinh terminal.

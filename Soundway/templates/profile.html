@@ -1,0 +1,94 @@
+<ion-view view-title="Profile">
+<div class="bar bar-subheader sub_head">
+   <div class="row profile_head">
+            <div class="col col-25">
+               <img src="img/005.png" ng-click="goto('/app/profile')"/>
+            </div>
+            <div class="col col-50" ng-click="play_sound(1);scrollTop()">
+               <h3>Aksel Hennie</h3>
+               <p class="country">United states</p>
+               <p class="follower_num"><i class="ion-person-stalker"></i>2549</p>
+            </div>
+             <div class="col col-25">
+               <button class="button button-block">Following</button>
+            </div>
+        </div>
+        <div class="row more_lists">
+           <div class="col" ng-class="{'list_btn':showDetails=='post'}" ng-click="showDetails='post'">
+              <p>POSTS</p>
+          </div>
+            <div class="col" ng-class="{'list_btn':showDetails=='following'}" ng-click="showDetails='following'">
+              <p>Followings</p>
+          </div>
+           <div class="col" ng-class="{'list_btn':showDetails=='followers'}" ng-click="showDetails='followers'">
+              <p>Followers</p>
+          </div>
+        </div>
+</div>
+ <ion-content class="has-subheader profile_page">
+   <div ng-switch on="showDetails">
+     <div  ng-switch-when="post" >
+      <div class="list_item"
+       collection-repeat="item in posts"
+       collection-item-width="'100%'"
+       collection-item-height="89px">
+      
+        <div class="row">
+            <div class="col col-25">
+               <img src="{{item.img}}"/>
+            </div>
+            <div class="col col-75">
+               <h3>Aksel Hennie<span class="time">{{item.time}}</span></h3> 
+               <p class="litle_parag">{{item.name}}</p>
+               <div class="likes_share">
+                   <p><i class="ion-play"></i>245<span class="more_icon"><i class="ion-more"></i></span></p>
+               </div> 
+            </div>
+        </div>
+       
+    </div>
+   </div>
+   
+    <div class="follow_list" ng-switch-when="following" >
+      <div class="list_item"
+       collection-repeat="item in items"
+       collection-item-width="'100%'"
+       collection-item-height="80px">
+      
+        <div class="row">
+            <div class="col col-25">
+               <img src="{{item.img}}"/>
+            </div>
+            <div class="col col-75">
+               <h3 ng-class="{'center_txt':!item.country}">{{item.title}}</h3>
+               <p>{{item.country}}</p>
+               <p class="follower_num"><i class="ion-person-stalker"></i>{{item.follow_num}}</p> 
+            </div>
+        </div>
+       
+    </div>
+    </div>
+     <div class="follow_list" ng-switch-when="followers" >
+       <div class="list_item"
+       collection-repeat="item in items"
+       collection-item-width="'100%'"
+       collection-item-height="80px">
+      
+        <div class="row">
+            <div class="col col-25">
+               <img src="{{item.img}}"/>
+            </div>
+            <div class="col col-75">
+               <h3 ng-class="{'center_txt':!item.country}">{{item.title}}</h3>
+               <p>{{item.country}}</p>
+               <p class="follower_num"><i class="ion-person-stalker"></i>{{item.follow_num}}</p> 
+            </div>
+        </div>
+       
+    </div>
+    </div>
+   
+   </div>
+  </ion-content>
+   
+</ion-view>

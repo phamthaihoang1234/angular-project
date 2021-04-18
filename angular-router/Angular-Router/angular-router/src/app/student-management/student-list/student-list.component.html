@@ -1,0 +1,25 @@
+<!--Các bạn có thể tìm hiểu thêm  phần này tại blogs: https://levunguyen.com,-->
+<!--blogs chuyên về lập trình và các kỹ năng mềm trong nghề lập trình-->
+
+<a [routerLink]="['/student-create']">Create student</a>
+<p style="color: green">{{message}}</p>
+
+<h3>List student</h3>
+
+<table align="center" border="1">
+  <tr>
+    <th>No</th>
+    <th>Name</th>
+    <th>Date of birth</th>
+    <th colspan="2">Action</th>
+  </tr>
+  <ng-container *ngFor="let student of studentList; let i = index">
+    <tr>
+      <td>{{i + 1}}</td>
+      <td><a [routerLink]="['/student-detail', student.id]">{{student.name}}</a></td>
+      <td>{{student.dateOfBirth}}</td>
+      <td><a [routerLink]="['/student-update', student.id]">Update</a></td>
+      <td><a [routerLink]="['/student-delete', student.id]">Delete</a></td>
+    </tr>
+  </ng-container>
+</table>

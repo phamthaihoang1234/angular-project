@@ -1,0 +1,24 @@
+{
+  "studentList": [
+    {
+      "id": 1,
+      "name": "Glen John",
+      "dateOfBirth": "20/02/1998"
+    },
+    {
+      "id": 2,
+      "name": "David Tom",
+      "dateOfBirth": "01/10/1997"
+    },
+    {
+      "id": 3,
+      "name": "Steven Grace",
+      "dateOfBirth": "07/07/1996"
+    },
+    {
+      "name": "Campbell",
+      "dateOfBirth": "02/08/1995",
+      "id": 4
+    }
+  ]
+}

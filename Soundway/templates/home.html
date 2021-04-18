@@ -1,0 +1,56 @@
+<ion-view view-title="Stream">
+  <ion-content class="list_page"  ng-class="{'content_bottom':play_item==1}">
+     <div class="list_item"
+       collection-repeat="item in items"
+       collection-item-width="'100%'"
+       collection-item-height="104px">
+      
+        <div class="row">
+            <div class="col col-25">
+               <img src="{{item.img}}" ng-click="goto('/app/profile')"/>
+            </div>
+            <div class="col col-75" ng-click="play_sound(1,$index);scrollTop()">
+               <h3>{{item.title}}<span class="time">{{item.time}}</span></h3> 
+               <p class="litle_parag">Dream works Animation Can Still Make Money From Movies</p>
+               <div class="row likes_share">
+                <div class="col col-25">
+                   <p><i class="ion-play"></i>245</p>
+                </div>
+                <div class="col col-25">
+                   <p><i class="ion-ios-heart"></i>18</p>
+                </div>
+                <div class="col col-25">
+                   <p><i class="ion-share"></i>3</p>
+                </div>
+                 <div class="col col-25" ng-if="playrow==$index">
+                        <div class="waves"></div>
+                        <div class="waves"></div>
+                        <div class="waves"></div>
+                        <div class="waves"></div>
+                        <div class="waves"></div>
+                        <div class="waves"></div>
+                        <div class="waves"></div>
+                        <div class="waves"></div>
+                        <div class="waves"></div>
+                        <div class="waves"></div>
+                </div>
+               </div> 
+            </div>
+        </div>
+       
+    </div>
+  </ion-content>
+  <ion-footer-bar class="footer" ng-if="play_item==1"  ng-class="{'hide_footer':play_item==2}">
+      <div class="row"  ng-class="{'animated slideInUp':play_item==1}">
+         <div class="col col-25">
+            <span><i class="ion-ios-pause"></i></span>
+         </div>
+         <div class="col col-75">
+            <h3>Aksel Hennie</h3>
+            <p>dream works animation can still make money</p>
+            <img src="img/sound.png"/>
+            <span class="close" ng-click="play_sound(2)"><i class="ion-close"></i></span>
+         </div>
+      </div> 
+  </ion-footer-bar>
+</ion-view>

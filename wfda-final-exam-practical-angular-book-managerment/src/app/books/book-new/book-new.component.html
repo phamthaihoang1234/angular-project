@@ -1,0 +1,37 @@
+<form [formGroup]="bookForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Thêm sách mới</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="row">
+                <mat-form-field class="full-width" appearance="outline">
+                    <input matInput placeholder="Title" formControlName="title">
+                    <mat-error *ngIf="bookForm.controls['title'].hasError('required')">
+                        Title is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="full-width" appearance="outline">
+                    <input matInput placeholder="Author" formControlName="author">
+                    <mat-error *ngIf="bookForm.controls['author'].hasError('required')">
+                        Author is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="full-width" appearance="outline">
+                    <textarea matInput placeholder="Description" formControlName="description"></textarea>
+                    <mat-error *ngIf="bookForm.controls['description'].hasError('required')">
+                        Description is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </mat-card-content>
+        <mat-card-actions class="example-button-row">
+            <button [disabled]="bookForm.invalid" mat-raised-button color="primary" type="submit">Thêm sách</button>
+            <a mat-raised-button routerLink="/">Thoát</a>
+        </mat-card-actions>
+    </mat-card>
+</form>

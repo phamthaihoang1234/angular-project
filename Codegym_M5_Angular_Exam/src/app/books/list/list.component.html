@@ -1,0 +1,32 @@
+<div class="col-md-6 offset-md-3">
+
+  <h1 align="center">List of books create by HoangPham</h1>
+  <button style="float: right" routerLink='/createBook' class="btn btn-success" >Create</button>
+  <hr>
+
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">View detail </th>
+      <th scope="col">Name</th>
+      <th scope="col">Author</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let book of listBook">
+      <td><a [routerLink]="['/detailBook',book.id]">{{book.title}}</a></td>
+      <td>{{book.author}}</td>
+      <td>
+        <button [routerLink]="['/updateBook',book.id]" class="btn btn-success">Edit</button>
+      </td>
+      <td>
+        <button [routerLink]="['/deleteBook',book.id]" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

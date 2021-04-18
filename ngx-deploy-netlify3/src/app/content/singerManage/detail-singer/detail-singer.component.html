@@ -1,0 +1,288 @@
+<!--<div *ngIf="category">-->
+<!--    <div>-->
+<!--        <label><b>First Name: </b></label> {{category.nameCategory}}-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <label><b>Last Name: </b></label>-->
+<!--        <img [src]=category.avatarCategory>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;    <button [routerLink]="['/addSongToCategory/',category.id]" mat-flat-button color="accent">&ndash;&gt;-->
+<!--    &lt;!&ndash;        <mat-icon>queue music</mat-icon>&ndash;&gt;-->
+<!--    &lt;!&ndash;        Add Music&ndash;&gt;-->
+<!--    &lt;!&ndash;    </button>&ndash;&gt;-->
+<!--    &lt;!&ndash;    <button [routerLink]="['/editCategory/',category.id]" mat-flat-button color="accent">&ndash;&gt;-->
+<!--    &lt;!&ndash;        <mat-icon>queue music</mat-icon>&ndash;&gt;-->
+<!--    &lt;!&ndash;        Add Music&ndash;&gt;-->
+<!--    &lt;!&ndash;    </button>&ndash;&gt;-->
+<!--</div>-->
+<div class="container" *ngIf="singer">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px">
+                <b style="color: #ff03cc">{{singer.nameSinger}}</b>
+                <img class="image" [src]="singer.avatarSinger"> <br><br>
+
+                <mat-accordion>
+                    <!--    <mat-expansion-panel hideToggle>-->
+                    <!--        <mat-expansion-panel-header>-->
+                    <!--            <mat-panel-title>-->
+                    <!--                This is the expansion title-->
+                    <!--            </mat-panel-title>-->
+                    <!--            <mat-panel-description>-->
+                    <!--                This is a summary of the content-->
+                    <!--            </mat-panel-description>-->
+                    <!--        </mat-expansion-panel-header>-->
+                    <!--        <p>This is the primary content of the panel.</p>-->
+                    <!--    </mat-expansion-panel>-->
+                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                         (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title style="color: blue;">
+                                INFORMATION:
+                            </mat-panel-title>
+                            <mat-panel-description style="color: red;">
+                                Click View {{panelOpenState ? 'open!' : 'closed!'}}
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <mat-card-subtitle style="color: darkgreen">Birth day: yyyy-MM-dd: {{singer.birthday}}</mat-card-subtitle>
+                        <p style="color: #ff03cc">{{singer.information}}</p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <br>
+
+                <div class="search-hero">
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                           placeholder="&#61442;  Search Song in one page ..."><br>
+                    <button *ngIf="isCheckAdmin" [routerLink]="['/editSinger/',singer.id]" type="submit" style="color: crimson; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="mat-button-toggle-group btn-outline-success"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
+                        Edit Singer<img src="../../../../assets/images/icons/create-category.png" height="40"
+                                            width="40"/></b></span>
+                    </button>
+                </div>
+
+                <!--                <mat-grid-list  cols="3" rowHeight="2:1">-->
+                <!--                    <mat-grid-tile *ngFor="let ctg of category|filter:searchText">-->
+                <!--                          <mat-card>-->
+                <!--                              <b>{{ctg.nameCategory}}</b>-->
+                <!--                              <img width="50px" height="50px" [src]="ctg.avatarCategory">-->
+                <!--                          </mat-card>-->
+                <!--                    </mat-grid-tile>-->
+
+                <!--                </mat-grid-list>-->
+                <div class="row">
+                    <div class="column" *ngFor="let ctc of songs|filter: searchText"
+                         >
+<!--                        <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon"-->
+<!--                                (click)="deleteSongBySinger(ctc.id)">-->
+<!--                            <mat-icon>delete</mat-icon>-->
+<!--                        </button>-->
+                        <div class="card">
+                            <b [routerLink]="['/detailSong/',ctc.id]" class="title"
+                               style="color: crimson">{{ctc.nameSong}}</b>
+                            <img [routerLink]="['/detailSong/',ctc.id]" class="image1" [src]="ctc.avatarSong">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <mat-paginator #paginator [pageSizeOptions]="[10, 50, 100]" [pageSize]="5" [length]="totalElements"
+                               (page)="nextPage($event)">
+
+                </mat-paginator>
+                <hr>
+                <mat-card>
+                    <mat-card-title style="color: mediumvioletred;" class="alert alert-primary">
+                        Video
+                        <img src="../../../../assets/images/icons/video.png" height="50" width="50"/></mat-card-title>
+                    <div class="search-hero">
+                        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                               placeholder="&#61442;  Search Song in one page..."><br>
+                    </div>
+
+                    <div class="row">
+                        <div class="column" *ngFor="let video of videos|filter: searchText">
+                            <!--                        <button *ngIf="isCheck" routerLink="/createSong" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">-->
+                            <!--                            <mat-icon>queue music</mat-icon>-->
+                            <!--                        </button>-->
+                            <button *ngIf="isCheckAdmin" [routerLink]="['/editVideo/',video.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button  *ngIf="isCheckAdmin" mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                                     (click)="deleteVideo(video.id)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            <div [routerLink]="['/detailVideo/',video.id]" class="card" >
+                                <div >
+                                    <button mat-fab shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color"
+                                            url="https://dongchinh.netlify.app/detailVideo/{{video.id}}"
+                                            [image]="video.avatarSong">
+                                        <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
+                                    </button>
+                                    <button  (click)="likeCount(video.id)" mat-button type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-danger">
+                                        <!--                                aria-label="Angular Audio Player"-->
+                                        <!--                                class="mat-button-toggle-group btn-outline-success"-->
+                                        <!--                                mat-button tabindex="0" aria-disabled="false"-->
+                                        <!--                        >-->
+
+                                        <!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                                        <!--                              width="40"/>-->
+
+
+                                        <img src="../../../../assets/images/icons/like1.png" height="50" width="50"/><b>{{video.likeVideo}}</b>
+                                    </button>
+<!--                                    <button (click)="likeCount(video.id)"mat-button  type="submit" style="color: crimson; text-decoration: none;"  class="mat-button-toggle-group btn-outline-danger">-->
+<!--                                        &lt;!&ndash;                                aria-label="Angular Audio Player"&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                class="mat-button-toggle-group btn-outline-success"&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                mat-button tabindex="0" aria-disabled="false"&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                        >&ndash;&gt;-->
+
+<!--                                        &lt;!&ndash;                         <img src="../../../../assets/images/icons/create-category.png" height="40"&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                              width="40"/>&ndash;&gt;-->
+
+<!--                                        <img src="../../../../assets/images/icons/like2.png" height="50" width="50"/><b>{{video.likeVideo}}</b>-->
+<!--                                    </button>-->
+                                    <button mat-button  type="submit" style="color: crimson; text-decoration: none;" >
+                                        <!--                                aria-label="Angular Audio Player"-->
+                                        <!--                                class="mat-button-toggle-group btn-outline-success"-->
+                                        <!--                                mat-button tabindex="0" aria-disabled="false"-->
+                                        <!--                        >-->
+
+                                        <!--                         <img src="../../../../assets/images/icons/create-category.png" height="40"-->
+                                        <!--                              width="40"/>-->
+
+
+                                        <b><img src="../../../../assets/images/icons/listen.png" height="50" width="50"/>{{video.viewVideo}}</b>
+                                    </button>
+                                </div>
+
+                                <i [routerLink]="['/detailVideo/',video.id]" style="color: crimson">
+                                    {{video.nameVideo}}
+                                </i>
+
+
+                                <!--                            <a>{{karaoke.linkYoutube}}</a>-->
+                                <!--                            <mat-video width="700" height="500" src="{{karaoke.linkYoutube}}"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></mat-video>-->
+                                <!--                            {{karaoke.linkYoutube}}-->
+                                <iframe class="youtube" width="270px" height="200px" [src]="video.linkYoutube|safe:'resourceUrl'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <!--                            <img [routerLink]="['/detailSong/',song.id]"class="img" [src]="song.avatarSong">-->
+                                <!--                            <mat-card-subtitle [routerLink]="['/detailSong/',song.id]"style="color: #2b542c">Singer's: <b-->
+                                <!--                                    style="color: crimson">{{song.nameSinger}}</b>-->
+                                <!--                            </mat-card-subtitle>-->
+                                <!--                            <mat-card-subtitle [routerLink]="['/detailSong/',song.id]" style="color: #2b542c">Music Genre: <b-->
+                                <!--                                    style="color: crimson">{{song.nameCategory}}</b>-->
+                                <!--                            </mat-card-subtitle>-->
+                                <!--                            <mat-card-subtitle style="color: #ff03cc"><b style="color: #2b542c">Created by:</b>{{karaoke.createBy}}</mat-card-subtitle>-->
+
+                            </div>
+
+
+
+
+                        </div>
+
+                    </div>
+                    <mat-paginator #paginator [pageSizeOptions]="[3,15,30,90]" [length]="totalElements"
+                                   (page)="nextPage($event)">
+                    </mat-paginator>
+                </mat-card>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+
+<!--<mat-accordion>-->
+<!--&lt;!&ndash;    <mat-expansion-panel hideToggle>&ndash;&gt;-->
+<!--&lt;!&ndash;        <mat-expansion-panel-header>&ndash;&gt;-->
+<!--&lt;!&ndash;            <mat-panel-title>&ndash;&gt;-->
+<!--&lt;!&ndash;                This is the expansion title&ndash;&gt;-->
+<!--&lt;!&ndash;            </mat-panel-title>&ndash;&gt;-->
+<!--&lt;!&ndash;            <mat-panel-description>&ndash;&gt;-->
+<!--&lt;!&ndash;                This is a summary of the content&ndash;&gt;-->
+<!--&lt;!&ndash;            </mat-panel-description>&ndash;&gt;-->
+<!--&lt;!&ndash;        </mat-expansion-panel-header>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p>This is the primary content of the panel.</p>&ndash;&gt;-->
+<!--&lt;!&ndash;    </mat-expansion-panel>&ndash;&gt;-->
+<!--    <mat-expansion-panel (opened)="panelOpenState = true"-->
+<!--                         (closed)="panelOpenState = false">-->
+<!--        <mat-expansion-panel-header>-->
+<!--            <mat-panel-title>-->
+<!--                Self aware panel-->
+<!--            </mat-panel-title>-->
+<!--            <mat-panel-description>-->
+<!--                Currently I am {{panelOpenState ? 'open' : 'closed'}}-->
+<!--            </mat-panel-description>-->
+<!--        </mat-expansion-panel-header>-->
+<!--        <p>I'm visible because I am open</p>-->
+<!--    </mat-expansion-panel>-->
+<!--</mat-accordion>-->
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px">
+                <mat-card-title style="color: green"><img src="../../../../assets/images/icons/album1.png" height="50"
+                                                          width="50"/>Albums</mat-card-title>
+                <div class="search-hero">
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                           placeholder="&#61442;  Search album in one page..."><br>
+<!--                    <button routerLink="/createCategory" type="submit" style="color: crimson; text-decoration: none;"-->
+<!--                            aria-label="Angular Audio Player"-->
+<!--                            class="mat-button-toggle-group btn-outline-success"-->
+<!--                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>-->
+<!--                        Create Category<img src="../../../../assets/images/icons/create-category.png" height="40"-->
+<!--                                            width="40"/></b></span>-->
+<!--                    </button>-->
+                </div>
+
+                <!--                <mat-grid-list  cols="3" rowHeight="2:1">-->
+                <!--                    <mat-grid-tile *ngFor="let ctg of category|filter:searchText">-->
+                <!--                          <mat-card>-->
+                <!--                              <b>{{ctg.nameCategory}}</b>-->
+                <!--                              <img width="50px" height="50px" [src]="ctg.avatarCategory">-->
+                <!--                          </mat-card>-->
+                <!--                    </mat-grid-tile>-->
+
+                <!--                </mat-grid-list>-->
+                <div class="row">
+                    <div class="column" *ngFor="let pl of playLists|filter: searchText">
+<!--                        <button  *ngIf="isCheckAdmin" [routerLink]="['/addSongToPlayList/',pl.id]" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">-->
+<!--                            <mat-icon>queue music</mat-icon>-->
+<!--                        </button>-->
+                        <button *ngIf="isCheckAdmin" [routerLink]="['/editPlayList/',pl.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button  *ngIf="isCheckAdmin" mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                                (click)="deletePlayList(pl.id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <div class="card" >
+                            <b [routerLink]="['/detailPlayList/',pl.id]" class="title" style="color: crimson">{{pl.namePlayList}}</b>
+                            <img [routerLink]="['/detailPlayList/',pl.id]" class="image1"  [src]="pl.avatarPlayList">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <mat-paginator [pageSizeOptions]="[30, 50, 100]" [pageSize]="5" [length]="totalElements"
+                               (page)="nextPage($event)">
+
+                </mat-paginator>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

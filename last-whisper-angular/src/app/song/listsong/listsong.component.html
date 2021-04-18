@@ -1,0 +1,51 @@
+<app-header></app-header>
+<div class="container">
+  <header class="jumbotron">
+    <div class="container emp-profile" >
+      <form method="post">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="profile-head">
+              <h2 style="color: blue">
+                <strong>DANH SÁCH BÀI HÁT</strong>
+              </h2>
+              <button  class="profile-edit-btn" name="btnAddMore">Tạo bài hát</button>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="tab-content profile-tab" id="myTabContent">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th scope="col">Thứ tự</th>
+                  <th scope="col">Tên bài</th>
+                  <th scope="col">Ca sĩ</th>
+                  <th scope="col">Tác giả</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Link</th>
+                  <th scope="col">Sửa</th>
+                  <th scope="col">Xoá</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let song of listSong; let i = index">
+                  <th scope="row">{{i+1}}</th>
+                  <td><a [routerLink]="['/song/'+song.id]">{{song.nameMusic}}</a></td>
+                  <td>{{song.singer}}</td>
+                  <td>{{song.author}}</td>
+                  <td>{{song.description}}</td>
+
+                  <td> <a [routerLink]="['/editsong',currentUser.username,song.id]">Edit</a></td >
+                  <td> <button type="button" class="btn btn-secondary" >Delete</button></td>
+                </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+        </div>
+      </form>
+    </div>
+  </header>
+</div>
+<app-footer></app-footer>
+

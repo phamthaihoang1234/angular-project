@@ -1,0 +1,8 @@
+<form [formGroup]="editForm" (ngSubmit)="editP()">
+  <input type="text" formControlName="id" readonly/>
+  <input type="text" formControlName="name"/>
+  <input type="number" formControlName="price"/>
+  <input type="text" formControlName="image"/>
+  <input type="number" formControlName="categoryId"/>
+  <button class="btn btn-outline-primary" type="submit" [disabled]="!editForm.valid">Edit</button>
+</form>

@@ -1,0 +1,7 @@
+<form [formGroup]="createForm" (ngSubmit)="createNew()">
+  <input type="text" formControlName="name"/>
+  <input type="number" formControlName="price"/>
+  <input type="text" formControlName="image"/>
+  <input type="number" formControlName="categoriID"/>
+  <button class="btn btn-outline-primary" type="submit" [disabled]="!createForm.valid">Create</button>
+</form>

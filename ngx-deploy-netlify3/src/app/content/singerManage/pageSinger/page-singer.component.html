@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <mat-card style="margin: 50px">
+                <div class="search-hero">
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                           placeholder="&#61442;  Search singer in one page..."><br>
+                    <button routerLink="/createSinger" type="submit" style="color: crimson; text-decoration: none;"
+                            aria-label="Angular Audio Player"
+                            class="mat-button-toggle-group btn-outline-success"
+                            mat-button tabindex="0" aria-disabled="false"><span class="mat-button-wrapper"><b>
+                        Create Singer
+                        <img src="../../../../assets/images/icons/create-singer.png" height="40" width="40"/></b></span>
+                    </button><br><br>
+                </div>
+
+                <!--                <mat-grid-list  cols="3" rowHeight="2:1">-->
+                <!--                    <mat-grid-tile *ngFor="let ctg of category|filter:searchText">-->
+                <!--                          <mat-card>-->
+                <!--                              <b>{{ctg.nameCategory}}</b>-->
+                <!--                              <img width="50px" height="50px" [src]="ctg.avatarCategory">-->
+                <!--                          </mat-card>-->
+                <!--                    </mat-grid-tile>-->
+
+                <!--                </mat-grid-list>-->
+                <div class="row">
+                    <div class="column" *ngFor="let singer of singers|filter: searchText">
+<!--                        <button *ngIf="isCheck" [routerLink]="['/addSongToSinger/',singer.id]" mat-flat-button color="accent">-->
+<!--                            <mat-icon>queue music</mat-icon>-->
+<!--                            Add Music-->
+<!--                        </button>-->
+<!--                        <button *ngIf="isCheck" [routerLink]="['/addPlayListToSinger/',singer.id]" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">-->
+<!--                            <mat-icon>playlist_add</mat-icon>-->
+<!--                        </button>-->
+<!--                        <button *ngIf="isCheck" [routerLink]="['/addSongToSinger/',singer.id]" mat-icon-button style="color: #ff03cc" aria-label="Example icon button with a heart icon">-->
+<!--                            <mat-icon>queue</mat-icon>-->
+<!--                        </button>-->
+                        <button *ngIf="isCheck" [routerLink]="['/editSinger/',singer.id]" mat-icon-button color="primary" aria-label="Example icon button with a heart icon">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button *ngIf="isCheck" mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                        (click)="deleteSinger(singer.id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+
+                        <div class="card" >
+                            <b  [routerLink]="['/detailSinger/',singer.id]" style="color: crimson">{{singer.nameSinger}}</b>
+                            <mat-card-subtitle  [routerLink]="['/detailSinger/',singer.id]" style="color: green">birthday:{{singer.birthday}}</mat-card-subtitle>
+                            <img [routerLink]="['/detailSinger/',singer.id]" class="image"  [src]="singer.avatarSinger">
+<!--                            <b>{{singer.id}}</b>-->
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <mat-paginator [pageSizeOptions]="[12, 24, 100]"  [length]="totalElements"
+                               (page)="nextPage($event)">
+
+                </mat-paginator>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+

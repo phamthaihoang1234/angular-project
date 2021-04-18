@@ -1,0 +1,10 @@
+<!--Các bạn có thể tìm hiểu thêm  phần này tại blogs: https://levunguyen.com,-->
+<!--blogs chuyên về lập trình và các kỹ năng mềm trong nghề lập trình-->
+
+<form (ngSubmit)="save()" [formGroup]="studentForm">
+  <label>Name: </label>
+  <input type="text" formControlName="name" /><br>
+  <label>Date of birth: </label>
+  <input type="text" formControlName="dateOfBirth"/><br>
+  <input type="submit" value="Register" />
+</form>

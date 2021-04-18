@@ -1,0 +1,27 @@
+<h3>Update Employee</h3>
+<div style="width: 400px;">
+
+
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>First name</label>
+      <input type="text" formControlName="firstName" class="form-control"  id="firstName" required value="{{employee.firstName}}" name="firstName">
+    </div>
+
+    <div class="form-group">
+      <label >Last Name</label>
+      <input type="text" formControlName="lastName" class="form-control"  id="lastName" required value="{{employee.lastName}}" name="lastName">
+
+    </div>
+
+    <div class="form-group">
+      <label >Email Id</label>
+      <input type="text" formControlName="emailId" class="form-control" id="emailId" required value="{{employee.emailId}}" name="emailId">
+
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+
+
+  </form>
+</div>
